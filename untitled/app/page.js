@@ -1,5 +1,6 @@
 'use client';
 import React, { useState } from 'react';
+import classes from "./page.module.css";
 
 const handleLogin = async (event) => {
   event.preventDefault();
@@ -34,8 +35,8 @@ export default function Login() {
   const [password, setPassword] = useState('');
 
   return (
-      <main>
-        <form onSubmit={handleLogin}>
+      <main className={classes.loginContainer}>
+        <form onSubmit={handleLogin} className={classes.loginForm}>
           <label>
             Username:
             <input type="text" name="username" value={username} onChange={e => setUsername(e.target.value)} required />
@@ -44,7 +45,7 @@ export default function Login() {
             Password:
             <input type="password" name="password" value={password} onChange={e => setPassword(e.target.value)} required />
           </label>
-          <input type="submit" value="Submit" />
+          <input type="submit" value="Login" />
         </form>
       </main>
   );

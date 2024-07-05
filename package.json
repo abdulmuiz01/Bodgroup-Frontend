@@ -9,8 +9,16 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "dgram": "^1.0.1",
+    "dns": "^0.2.2",
+    "express": "^4.19.2",
+    "mssql": "^11.0.1",
+    "net": "^1.0.2",
+    "next": "14.2.4",
+    "next-transpile-modules": "^10.0.1",
     "react": "^18",
     "react-dom": "^18",
-    "next": "14.2.4"
+    "tedious": "^18.2.1",
+    "tls": "^0.0.1"
   }
 }

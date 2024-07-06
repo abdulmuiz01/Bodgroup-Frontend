@@ -1,0 +1,113 @@
+/* styles.css */
+.form{
+    display: flex;
+    justify-content: center;
+    gap: 100px;
+
+}
+.input {
+    font-size: 18px;
+    border: 0;
+    outline: none;
+    margin-top: 20px;
+    width: 100%;
+    max-width: 400px;
+    transition: padding 0.3s 0.2s ease;
+}
+
+.input:focus {
+    padding-bottom: 5px;
+}
+
+.input:focus + .line:after {
+    transform: scaleX(1);
+}
+
+.field {
+    position: relative;
+}
+
+.field .line {
+    width: 102%;
+    height: 3px;
+    position: absolute;
+    bottom: -8px;
+    background: #bdc3c7;
+}
+
+.field .line:after {
+    content: " ";
+    position: absolute;
+    float: right;
+    width: 100%;
+    height: 3px;
+    transform: scaleX(0);
+    transition: transform  0.3s ease;
+    background: #1abc9c;
+}
+
+.button{
+    margin-top: 20px;
+}
+
+.container {
+    margin-top: 50px;
+    width: 100%;
+    overflow-x: auto;
+}
+
+.dataTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    overflow-y: auto;
+}
+
+.tableContainer {
+    max-height: 800px; /* Altezza massima desiderata */
+    overflow-y: auto; /* Abilita lo scorrimento verticale */
+}
+
+.tableContainer table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tableContainer th, .tableContainer td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.tableContainer thead th {
+    position: sticky;
+    top: 0;
+    background-color: #f7f7f7; /* Colore di sfondo per l'intestazione */
+    z-index: 1; /* Mantiene l'intestazione sopra le righe della tabella */
+}
+
+
+.dataTable th,
+.dataTable td {
+    padding: 8px;
+    text-align: left;
+    border: 1px solid #ddd; /* Bordi delle celle */
+}
+
+.dataTable th {
+    background-color: #f2f2f2; /* Colore di sfondo per le celle dell'intestazione */
+}
+
+.dataTable tbody tr:nth-child(even) {
+    background-color: #f9f9f9; /* Colorazione alternata delle righe */
+}
+
+.dataTable tbody tr:hover {
+    background-color: #f1f1f1; /* Colore di sfondo al passaggio del mouse */
+}
+
+@media (max-width: 768px) {
+    .dataTable {
+        font-size: 14px; /* Riduci la dimensione del testo su dispositivi più piccoli */
+    }
+}

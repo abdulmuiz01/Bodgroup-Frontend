@@ -1,7 +1,8 @@
-import { sql, poolPromise } from '../../lib/db';
+// pages/api/getData.js
+import {sql, poolPromise} from '../../lib/db';
 
 export default async function handler(req, res) {
-    const { method, query } = req;
+    const {method, query} = req;
 
     switch (method) {
         case 'GET':
@@ -21,45 +22,50 @@ export default async function handler(req, res) {
 }
 
 async function getInitialData(req, res) {
+    const {page = 1, limit = 11} = req.query;
+
     try {
         const pool = await poolPromise;
-        console.log('Connected to the database');
-        const result = await pool.request().query('SELECT TOP 10 * FROM dbo.PartnerContracts');
-        console.log('Query executed successfully', result);
+        const offset = (page - 1) * limit;
+
+        const result = await pool.request()
+            .input('limit', sql.Int, parseInt(limit))
+            .input('offset', sql.Int, offset)
+            .query('SELECT * FROM dbo.PartnerContracts ORDER BY ContractStart OFFSET @offset ROWS FETCH NEXT @limit ROWS ONLY');
+
         res.status(200).json(result.recordset);
     } catch (error) {
         console.error('Error executing query:', error);
-        res.status(500).json({ error: error.message });
+        res.status(500).json({error: error.message});
     }
 }
 
 async function getFilteredData(req, res) {
-    const { partnerName, contractCode, productCode } = req.query;
+    const {partnerName, contractCode, productCode, page = 1, limit = 11} = req.query;
+    const offset = (page - 1) * limit;
 
     try {
         const pool = await poolPromise;
-        console.log('Connected to the database');
 
         const result = await pool.request()
             .input('partnerName', sql.NVarChar, partnerName ? `%${decodeURIComponent(partnerName)}%` : null)
             .input('contractCode', sql.NVarChar, contractCode ? `%${decodeURIComponent(contractCode)}%` : null)
             .input('productCode', sql.NVarChar, productCode ? `%${decodeURIComponent(productCode)}%` : null)
+            .input('limit', sql.Int, parseInt(limit))
+            .input('offset', sql.Int, offset)
             .query(`
-                SELECT * FROM dbo.PartnerContracts
-                WHERE
-                    (@partnerName IS NULL OR PartnerName LIKE @partnerName) AND
-                    (@contractCode IS NULL OR ContractCode LIKE @contractCode) AND
-                    (@productCode IS NULL OR ProductCode LIKE @productCode)
+                SELECT *
+                FROM dbo.PartnerContracts
+                WHERE (@partnerName IS NULL OR PartnerName LIKE @partnerName)
+                  AND (@contractCode IS NULL OR ContractCode LIKE @contractCode)
+                  AND (@productCode IS NULL OR ProductCode LIKE @productCode)
+                ORDER BY ContractStart
+                OFFSET @offset ROWS FETCH NEXT @limit ROWS ONLY
             `);
 
-        console.log('Query executed successfully', result);
         res.status(200).json(result.recordset);
     } catch (error) {
         console.error('Error executing query:', error);
-        res.status(500).json({ error: error.message });
+        res.status(500).json({error: error.message});
     }
 }
-
-
-
-

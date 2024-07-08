@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import classes from "./page.module.css";
 
 const handleLogin = async (event) => {
@@ -15,7 +15,6 @@ const handleLogin = async (event) => {
             username, password
         })
     });
-
 
     if (response.ok) {
         console.log(response);
@@ -36,18 +35,35 @@ export default function Login() {
     const [password, setPassword] = useState('');
 
     return (
-        <main className={classes.loginContainer}>
-            <form onSubmit={handleLogin} className={classes.loginForm}>
-                <label>
-                    Username:
-                    <input type="text" name="username" value={username} onChange={e => setUsername(e.target.value)} required />
-                </label>
-                <label>
-                    Password:
-                    <input type="password" name="password" value={password} onChange={e => setPassword(e.target.value)} required />
-                </label>
-                <input type="submit" value="Login" />
-            </form>
-        </main>
+        <>
+            <div className={classes.container}>
+                <div className={classes.loginBox}>
+                    <h2>Enter your credentials</h2>
+                    <form onSubmit={handleLogin}>
+                        <div className={classes.userBox}>
+                            <input
+                                type="text"
+                                name="username"
+                                value={username}
+                                onChange={e => setUsername(e.target.value)}
+                                required
+                            />
+                            <label>Username</label>
+                        </div>
+                        <div className={classes.userBox}>
+                            <input
+                                type="password"
+                                name="password"
+                                value={password}
+                                onChange={e => setPassword(e.target.value)}
+                                required
+                            />
+                            <label>Password</label>
+                        </div>
+                        <input className={classes.loginButton} type="submit" value="login"/>
+                    </form>
+                </div>
+            </div>
+        </>
     );
 }

@@ -18,6 +18,8 @@
     "next-transpile-modules": "^10.0.1",
     "react": "^18",
     "react-dom": "^18",
+    "react-virtualized-auto-sizer": "^1.0.24",
+    "react-window": "^1.8.10",
     "tedious": "^18.2.1",
     "tls": "^0.0.1"
   }

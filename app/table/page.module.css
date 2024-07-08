@@ -1,15 +1,81 @@
-/* styles.css */
-.form{
+.logoutContainer {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+    margin-right: 20px;
+
+}
+
+.logoutButton {
+    font-family: 'Montserrat', sans-serif;
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    font-weight: 500;
+    font-size: 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    cursor: pointer;
+    border: none;
+    transition: .2s;
+    border-radius: 10px;
+    background-color: #e00202;
+    color: white;
+}
+
+.logoutButton:hover {
+    background-color: #a00000;
+}
+
+.loadingContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+}
+
+.loading {
+    font-size: 50px;
+    color: #4D4DFB;
+}
+
+.loadingMessage {
+    text-align: center;
+    padding: 10px;
+    font-style: italic;
+    color: #4D4DFB;
+}
+
+.error {
+    font-size: 50px;
+    color: #e00202;
+}
+
+
+.heading {
+    display: flex;
+    justify-content: center;
+    font-family: 'Montserrat', sans-serif;
+    margin-top: 50px;
+    text-transform: uppercase;
+    color: #4D4DFB;
+}
+
+.form {
     display: flex;
     justify-content: center;
     gap: 100px;
+    font-family: 'Montserrat', sans-serif;
+    margin-top: 70px;
 
 }
+
 .input {
+    font-family: 'Montserrat', sans-serif;
     font-size: 18px;
     border: 0;
     outline: none;
-    margin-top: 20px;
     width: 100%;
     max-width: 400px;
     transition: padding 0.3s 0.2s ease;
@@ -31,7 +97,7 @@
     width: 102%;
     height: 3px;
     position: absolute;
-    bottom: -8px;
+    bottom: 0px;
     background: #bdc3c7;
 }
 
@@ -42,34 +108,59 @@
     width: 100%;
     height: 3px;
     transform: scaleX(0);
-    transition: transform  0.3s ease;
-    background: #1abc9c;
+    transition: transform 0.3s ease;
+    background: #4D4DFB;
 }
 
-.button{
-    margin-top: 20px;
+.button {
+    font-family: 'Montserrat', sans-serif;
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    font-weight: 500;
+    font-size: 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: .2s;
+    cursor: pointer;
+    border: none;
+    border-radius: 10px;
+    background-color: #4D4DFB;
+    color: white;
+}
+
+.button:hover {
+    background-color: #0000b9;
 }
 
 .container {
-    margin-top: 50px;
+    font-family: 'Montserrat', sans-serif;
+    margin-top: 70px;
     width: 100%;
-    overflow-x: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
 }
 
 .dataTable {
-    width: 100%;
+    width: min-content;
     border-collapse: collapse;
-    margin-bottom: 20px;
     overflow-y: auto;
+    display: block;
+    overflow-x: hidden;
 }
 
 .tableContainer {
-    max-height: 800px; /* Altezza massima desiderata */
-    overflow-y: auto; /* Abilita lo scorrimento verticale */
+    max-height: 580px;
+    max-width: 1670px;
+    overflow-y: auto;
+    border: 1px solid #ddd;
+    overflow-x: hidden;
 }
 
 .tableContainer table {
-    width: 100%;
     border-collapse: collapse;
 }
 
@@ -90,12 +181,16 @@
 .dataTable th,
 .dataTable td {
     padding: 8px;
+    height: 80px;
     text-align: left;
-    border: 1px solid #ddd; /* Bordi delle celle */
+    border: 1px solid #ddd;
+    border-collapse: collapse;
+
 }
 
 .dataTable th {
-    background-color: #f2f2f2; /* Colore di sfondo per le celle dell'intestazione */
+    background-color: #f2f2f2;
+    text-align: center;
 }
 
 .dataTable tbody tr:nth-child(even) {
